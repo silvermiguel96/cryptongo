@@ -2,8 +2,11 @@
 
 ## Requerimientos
 
-import requests #Librería para capturar peticiones rest
-import pymong #Librería para comunicarse con la bd mongodb
+import requests 
+#Librería para capturar peticiones rest
+import pymong 
+#Librería para comunicarse con la bd mongodb
 
-##
-Python3
+## Python3
+
+#Miguelangel Rendon

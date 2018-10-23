@@ -42,7 +42,7 @@ def remove_currency(): # Remover un tiques de una moneda
         params.update({'name': name})
     else:
         return False
-    return db_connection.tickers.delete_many(
+    return db_connection.ticker.delete_many(
         params
     ).deleted_count
     
@@ -54,6 +54,21 @@ def index():
              'name' : 'Cryptongo API'
          }
      )
+@app.route("/tickers", methods=['GET', 'DELETE'])
+def ticker():
+    if request.method == 'GET':
+        return jsonify(get_documents()) #retorna el methoso documents
+    elif request.method == 'DELETE':
+        result = remove_currency() #Lamamos al metodo borrar
+        if result > 0:
+            return jsonify({
+                'text': 'Documentos eliminados'
+            }), 204
+        else:
+            return jsonify({
+                'error': 'No se encontró el documento'
+            }), 404
+
 @app.route("/top20", methods=['GET']) #EXPLICAR el metodo que vamos a utilizar
 def top20():
     return jsonify(
